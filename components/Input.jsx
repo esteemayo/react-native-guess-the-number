@@ -1,8 +1,8 @@
 import { StyleSheet, TextInput } from 'react-native';
 
-const Input = ({ style }) => {
+const Input = ({ style, ...rest }) => {
   return (
-    <TextInput style={{ ...styles.input, ...style }} />
+    <TextInput {...rest} style={{ ...styles.input, ...style }} />
   );
 };
 
