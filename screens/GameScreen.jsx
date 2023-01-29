@@ -26,8 +26,8 @@ const GameScreen = ({ userChoice }) => {
       <Text>Opponent's Guess</Text>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
-        <Button title='LOWER' />
-        <Button title='GREATER' />
+        <Button title='LOWER' onPress={() => nextGuessHandler('lower')} />
+        <Button title='GREATER' onPress={() => nextGuessHandler('greater')} />
       </Card>
     </View>
   );
