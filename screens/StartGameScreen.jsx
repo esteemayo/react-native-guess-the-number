@@ -10,10 +10,10 @@ const StartGameScreen = () => {
         <TextInput />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title='Reset' />
+            <Button title='Reset' color='#c717fc' />
           </View>
           <View style={styles.button}>
-            <Button title='Confirm' />
+            <Button title='Confirm' color='#f7287b' />
           </View>
         </View>
       </Card>
