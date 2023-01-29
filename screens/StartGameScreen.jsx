@@ -7,12 +7,26 @@ import Colors from '../constants/color';
 
 const StartGameScreen = () => {
   const [number, setNumber] = useState('');
+  const [confirmed, setConfirmed] = useState(false);
+  const [selectedNumber, setSelectedNumber] = useState(null);
 
   const handleChange = (value) => {
     setNumber(value.replace(/[^0-9]/g, ''));
   };
 
   const handleReset = () => {
+    setNumber('');
+    setConfirmed(false);
+  };
+
+  const handleConfirm = () => {
+    const chosenNumber = parseInt(number);
+    if (chosenNumber === NaN || chosenNumber <= 0 || chosenNumber > 99) {
+      return;
+    }
+
+    setConfirmed(true);
+    setSelectedNumber(chosenNumber);
     setNumber('');
   };
 
@@ -41,7 +55,11 @@ const StartGameScreen = () => {
               />
             </View>
             <View style={styles.button}>
-              <Button title='Confirm' color={Colors.primary} />
+              <Button
+                title='Confirm'
+                color={Colors.primary}
+                onPress={handleConfirm}
+              />
             </View>
           </View>
         </Card>
