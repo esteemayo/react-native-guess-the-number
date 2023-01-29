@@ -124,6 +124,10 @@ const styles = StyleSheet.create({
   button: {
     width: 100,
   },
+  summaryContainer: {
+    marginTop: 20,
+    alignItems: 'center',
+  },
 });
 
 export default StartGameScreen;
