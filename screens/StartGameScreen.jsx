@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 
 import Card from '../components/Card';
 import Input from '../components/Input';
@@ -13,30 +13,32 @@ const StartGameScreen = () => {
   };
 
   return (
-    <View style={styles.screen}>
-      <Text style={styles.title}>Start a New Game!</Text>
-      <Card style={styles.inputContainer}>
-        <Text>Select a Number</Text>
-        <Input
-          style={styles.input}
-          blurOnSubmit
-          autoCapitalize='none'
-          autoCorrect={false}
-          keyboardType='number-pad'
-          maxLength={2}
-          value={number}
-          onChangeText={handleChange}
-        />
-        <View style={styles.buttonContainer}>
-          <View style={styles.button}>
-            <Button title='Reset' color={Colors.accent} />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.screen}>
+        <Text style={styles.title}>Start a New Game!</Text>
+        <Card style={styles.inputContainer}>
+          <Text>Select a Number</Text>
+          <Input
+            style={styles.input}
+            blurOnSubmit
+            autoCapitalize='none'
+            autoCorrect={false}
+            keyboardType='number-pad'
+            maxLength={2}
+            value={number}
+            onChangeText={handleChange}
+          />
+          <View style={styles.buttonContainer}>
+            <View style={styles.button}>
+              <Button title='Reset' color={Colors.accent} />
+            </View>
+            <View style={styles.button}>
+              <Button title='Confirm' color={Colors.primary} />
+            </View>
           </View>
-          <View style={styles.button}>
-            <Button title='Confirm' color={Colors.primary} />
-          </View>
-        </View>
-      </Card>
-    </View>
+        </Card>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
