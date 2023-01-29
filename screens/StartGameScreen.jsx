@@ -12,6 +12,10 @@ const StartGameScreen = () => {
     setNumber(value.replace(/[^0-9]/g, ''));
   };
 
+  const handleReset = () => {
+    setNumber('');
+  };
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.screen}>
@@ -30,7 +34,11 @@ const StartGameScreen = () => {
           />
           <View style={styles.buttonContainer}>
             <View style={styles.button}>
-              <Button title='Reset' color={Colors.accent} />
+              <Button
+                title='Reset'
+                color={Colors.accent}
+                onPress={handleReset}
+              />
             </View>
             <View style={styles.button}>
               <Button title='Confirm' color={Colors.primary} />
