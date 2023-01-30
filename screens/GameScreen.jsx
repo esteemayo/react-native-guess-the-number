@@ -16,10 +16,40 @@ const generateRandomBetween = (min, max, exclude) => {
   }
 };
 
-const GameScreen = ({ userChoice }) => {
+const GameScreen = ({ userChoice, onGameOver }) => {
+  const currentLow = useRef(1);
+  const currentHigh = useRef(100);
+  const [rounds, setRounds] = useState(0);
   const [currentGuess, setCurrentGuess] = useState(
     generateRandomBetween(1, 100, userChoice)
   );
+
+  const nextGuessHandler = (direction) => {
+    if ((direction === 'lower' && currentGuess < userChoice) || (direction === 'greater' && currentGuess > userChoice)) {
+      Alert.alert(
+        'Don\'t lie!',
+        'You know that this is wrong...',
+        [{ text: 'Sorry!', style: 'cancel' }],
+      );
+      return;
+    }
+
+    if (direction === 'lower') {
+      currentHigh.current = currentGuess;
+    } else {
+      currentLow.current = currentGuess;
+    }
+
+    const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
+    setCurrentGuess(nextNumber);
+    setRounds((curRounds) => curRounds + 1);
+  };
+
+  useEffect(() => {
+    if (currentGuess === userChoice) {
+      onGameOver(rounds);
+    }
+  }, [currentGuess, userChoice, onGameOver]);
 
   return (
     <View style={styles.screen}>
